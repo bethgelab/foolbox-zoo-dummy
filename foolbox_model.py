@@ -1,9 +1,24 @@
-import torchvision.models as models
-import foolbox
+import numpy as np
+
+
+class MockModel:
+
+    def channel_axis(self):
+        return 3
+
+    def predictions(self, image):
+        lower_bound = self.bounds()[0]
+        upper_bound = self.bounds()[1]
+        prediction = np.random.randint(lower_bound, upper_bound)
+        return prediction
+
+    def bounds(self):
+        return (0, 255)
+
+    def num_classes(self):
+        return 10
 
 
 def create():
-    squeezenet = models.squeezenet1_0(pretrained=True)
-    fmodel = foolbox.models.PyTorchModel(
-        squeezenet, (0, 1), num_classes=10)
-    return fmodel
+    net = MockModel()
+    return net
