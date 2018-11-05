@@ -7,9 +7,7 @@ class MockModel:
         return 3
 
     def predictions(self, image):
-        lower_bound = self.bounds()[0]
-        upper_bound = self.bounds()[1]
-        prediction = np.random.randint(lower_bound, upper_bound)
+        prediction = np.random.rand(10)
         return prediction
 
     def bounds(self):
