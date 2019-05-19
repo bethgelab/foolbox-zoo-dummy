@@ -6,7 +6,7 @@ class MockModel:
     def channel_axis(self):
         return 3
 
-    def predictions(self, image):
+    def forward_one(self, x):
         prediction = np.random.rand(10)
         return prediction
 
